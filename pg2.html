@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        h2,input,button{
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Guss Program</h2>
+    <input type="number" placeholder="Enter the number" id="num">
+    <button onclick="playgame()">Guss the Number</button>
+    <p id="feedback"></p>
+    <p id="count"></p>
+    <script>
+        let target = Math.floor(Math.random()*100)+1;
+        console.log(target);
+        let count=0;
+        function playgame(){
+            let guss=parseInt(document.getElementById("num").value);
+            count++;
+
+            if(guss < target){
+                document.getElementById("feedback").innerText="too low";
+            }
+            else if(guss > target){
+                document.getElementById("feedback").innerText="too high";
+            }
+            else{
+               document.getElementById("feedback").innerText="Your guss is correct and Your attempts is "+count;   
+            }
+        }
+    </script>
+    
+</body>
+</html>
