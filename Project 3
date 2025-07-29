@@ -1,0 +1,42 @@
+//Task list
+let tasks = [];
+
+// Function to add a task and run a callback
+function addTask(task, callback) {
+    tasks.push(task);
+    callback(); // Print tasks after adding
+}
+
+//  Callback function to show all tasks
+function showTasks() {
+    console.log("Tasks:");
+    for (let i = 0; i < tasks.length; i++) {
+        console.log((i + 1) + ". " + tasks[i]);
+    }
+}
+
+// Function to add multiple tasks using ...args
+function addManyTasks(...newTasks) {
+    for (let t of newTasks) {
+        tasks.push(t);
+    }
+    showTasks(); // show after adding
+}
+
+// Variable scope example
+let outside = "Outside Variable";
+
+function testScope() {
+    let inside = "Inside Variable";
+    console.log(outside); // works
+    console.log(inside);  // works
+}
+
+addTask("Learn JavaScript", showTasks);
+addTask("Practice coding", showTasks);
+
+addManyTasks("Buy milk", "Read book");
+
+testScope();
+
+// console.log(inside); // Error: inside is not defined outside function
