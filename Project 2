@@ -1,0 +1,59 @@
+let choice;
+do {
+    choice = prompt(
+        "Menu:1. Add
+2. Subtract
+3. Multiply
+4. Divide
+5. Exit
+nEnter your choice (1-5):"
+    );
+
+    switch (choice) {
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+            // Get first number
+            let num1 = prompt("Enter the first number:");
+            // Validate number
+            if (isNaN(num1) || num1 === "") {
+                alert("Invalid input! Please enter a number.");
+                continue;
+            }
+
+            // Get second number
+            let num2 = prompt("Enter the second number:");
+            if (isNaN(num2) || num2 === "") {
+                alert("Invalid input! Please enter a number.");
+                continue;
+            }
+
+            num1 = parseFloat(num1);
+            num2 = parseFloat(num2);
+
+            if (choice === '1') {
+                alert("Result: " + (num1 + num2));
+            } else if (choice === '2') {
+                alert("Result: " + (num1 - num2));
+            } else if (choice === '3') {
+                alert("Result: " + (num1 * num2));
+            } else if (choice === '4') {
+                if (num2 === 0) {
+                    alert("Cannot divide by zero!");
+                    continue;
+                }
+                alert("Result: " + (num1 / num2));
+            }
+            break;
+
+        case '5':
+            alert("Exiting calculator. Goodbye!");
+            break;
+
+        default:
+            alert("Invalid choice! Please enter a number between 1 and 5.");
+            continue;
+    }
+
+} while (choice !== '5');
