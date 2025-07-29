@@ -1,0 +1,50 @@
+task 1 Reverse string 
+
+function reverseWords(sentence) {
+    let words = sentence.split(" ");
+    let reversed = words.map(word => word.split("").reverse().join(""));
+    return reversed.join(" ");
+}
+
+let input1 = "Hello world JavaScript";
+console.log("Reversed words:", reverseWords(input1)); 
+
+output:
+Reversed words: olleH dlrow tpircSavaJ
+
+task 2 Remove duplications 
+
+
+function removeDuplicates(arr) {
+    let unique = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (!unique.includes(arr[i])) {
+            unique.push(arr[i]);
+        }
+    }
+    return unique;
+}
+
+let input2 = [1, 2, 3, 2, 4, 3, 5];
+console.log("Array without duplicates:", removeDuplicates(input2)); 
+
+// Output: [1, 2, 3, 4, 5]
+
+
+task 3  Count the vowles 
+
+function countVowels(str) {
+    let count = 0;
+    let vowels = "aeiouAEIOU";
+    for (let i = 0; i < str.length; i++) {
+        if (vowels.includes(str[i])) {
+            count++;
+        }
+    }
+    return count;
+}
+
+let input3 = "JavaScript is fun";
+console.log("Number of vowels:", countVowels(input3));  
+
+// Output: 5
