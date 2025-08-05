@@ -1,0 +1,74 @@
+let employees = [];  // array declaration
+
+// Add Employee
+function addEmp(id, name, salary = true) {
+    employees.push({ id, name, salary });
+    console.log("Employee added:", employees);
+}
+addEmp(1, "Kaviya Sri", 100000);
+addEmp(2, "Geetha", 150000);
+addEmp(3, "Rajesh Kannan", 200000);
+
+// Update Employee
+function updateEmp(id, newDetail) {
+    const emp = employees.find(e => e.id === id);
+    if (emp) {
+        Object.assign(emp, newDetail);
+        console.log("Updated:", employees);
+    } else {
+        console.log("Employee not found");
+    }
+}
+updateEmp(3, { name: "Raju" });
+
+// Remove Employee
+function removeEmp(id) {
+    const index = employees.findIndex((e) => e.id === id);
+    if (index !== -1) {
+        employees.splice(index, 1); // Fix: only remove 1 item
+        console.log("Employee removed:", employees);
+    } else {
+        console.log("Employee not found");
+    }
+}
+removeEmp(1);
+
+// Total Salary
+function totalSalary() {
+    const total = employees.reduce((sum, emp) => sum + emp.salary, 0);
+    console.log("Total Salary is: ₹" + total);
+}
+totalSalary();
+
+// Display all Employees
+function showAllEmployees() {
+    console.log("All Employees:");
+    employees.forEach(emp => console.log(emp));
+}
+showAllEmployees();
+
+// Find employee by name
+function findEmployeeByName(name) {
+    const result = employees.find(emp => emp.name.toLowerCase() === name.toLowerCase());
+    if (result) {
+        console.log("Employee Found:", result);
+    } else {
+        console.log("Employee not found");
+    }
+}
+findEmployeeByName("Geetha");
+
+// Destructure and display employee details
+function showDestructuredDetails(emp) {
+    const { id, name, salary } = emp;
+    console.log(`Destructured → ID: ${id}, Name: ${name}, Salary: ₹${salary}`);
+}
+showDestructuredDetails(employees[0]);
+
+// Clone employee list using spread operator
+let clonedEmployees = [...employees];
+console.log("Cloned Employees List:", clonedEmployees);
+
+// Filter employees with salary > 150000
+let highSalaryEmps = employees.filter(emp => emp.salary > 150000);
+console.log("High Salary Employees (> ₹150000):", highSalaryEmps);
