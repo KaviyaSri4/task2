@@ -17,7 +17,7 @@
             const words=text.match(/\b\w+\b/g) || [];
             const totalwords = words.length;
             const totalSentences = (text.match(/[.!?]/g) || []).length;
-            const uniqueWords = [...new set(words.map(w.toLowerCase()))];
+            const uniqueWords = [...new Set(words.map(w=>w.toLowerCase()))];
             const freq = {};
             words.forEach(word  => {
                const w=word.toLowerCase();
@@ -26,11 +26,11 @@
             const sortedfreq = Object.entries (freq).sort((a,b)=>b[1] -a[1]);
             const output= `
             Total characters: ${totalChars}
-            Total Words : ${totalWords}
+            Total Words : ${totalwords}
             Total Sentenes: ${totalSentences}
             unique words: ${uniqueWords.join(",")}
             word Frequency:
-            ${sortedfreq.map(([word,count])=>word+":"+count).join("\n")}`
+            ${sortedfreq.map(([word,count])=>word+":"+count).join("\n")}`;
             document.getElementById("output").textContent=output;   
 
         }
