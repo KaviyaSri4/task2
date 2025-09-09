@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile Module</title>
+</head>
+<body>
+  <h2>User Profile Demo</h2>
+  <pre id="output"></pre>
+
+  
+  <script type="module">
+
+    
+
+    function validateEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+
+    class User {
+      #name;
+      #email;
+
+      constructor(name, email) {
+        this.#name = name;
+        if (validateEmail(email)) {
+          this.#email = email;
+        } else {
+          throw new Error("Invalid email format");
+        }
+      }
+
+      
+      get name() {
+        return this.#name;
+      }
+      get email() {
+        return this.#email;
+      }
+
+      
+      set name(newName) {
+        if (newName.trim().length > 0) {
+          this.#name = newName;
+        } else {
+          throw new Error("Name cannot be empty");
+        }
+      }
+      set email(newEmail) {
+        if (validateEmail(newEmail)) {
+          this.#email = newEmail;
+        } else {
+          throw new Error("Invalid email format");
+        }
+      }
+
+      
+      static isValidEmail(email) {
+        return validateEmail(email);
+      }
+    }
+
+    
+    User.prototype.logActivity = function (activity) {
+      log(`[${this.name}] Activity: ${activity}`);
+    };
+
+  
+    function log(msg) {
+      document.getElementById("output").textContent += msg + "\n";
+    }
+
+    try {
+      const user1 = new User("Alice", "alice@example.com");
+      const user2 = new User("Bob", "bob123@mail.com");
+
+      log("User 1: " + user1.name + " - " + user1.email);
+      log("User 2: " + user2.name + " - " + user2.email);
+
+    
+      user1.name = "Alice Wonderland";
+      user2.email = "bob.new@mail.com";
+      log("Updated User 1: " + user1.name);
+      log("Updated User 2: " + user2.email);
+
+      
+      log("Valid email? " + User.isValidEmail("wrong-email.com"));
+
+      
+      user1.logActivity("Logged in");
+      user2.logActivity("Updated profile");
+
+    } catch (err) {
+      log("Error: " + err.message);
+    }
+  </script>
+</body>
+</html>
