@@ -1,0 +1,42 @@
+
+class Book {
+  constructor(title, author, publishedYear) {
+    this.title = title;
+    this.author = author;
+    
+    this.publishedYear = new Date(publishedYear, 0); // 0 means January
+  }
+
+  getSummary() {
+    return `${this.title} by ${this.author}, published in ${this.publishedYear.getFullYear()}`;
+  }
+}
+
+
+class LBook extends Book {
+  constructor(title, author, publishedYear, fileSize) {
+    
+    super(title, author, publishedYear);
+    this.fileSize = fileSize; // extra property
+  }
+
+  
+  getSummary() {
+  
+    return `${super.getSummary()} [File size: ${this.fileSize}MB]`;
+  }
+}
+
+
+const book1 = new Book("Pride and Prejudice", "Jane Austen", 1813);
+const book2 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
+
+
+const lbook1 = new LBook("Digital Fortress", "Dan Brown", 1998, 5);
+const lbook2 = new LBook("Harry Potter (E-book)", "J.K. Rowling", 1997, 10);
+
+
+console.log(book1.getSummary());
+console.log(book2.getSummary());
+console.log(lbook1.getSummary());
+console.log(lbook2.getSummary());
