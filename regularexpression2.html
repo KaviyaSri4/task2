@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // Quantifiers - how many times character or group should appear
+        
+        let text="aaabba"
+        let pattern=/\a/g; // \a - only count total and find a
+        let pattern2=/\a*/g; // *- count a and recheck from from first so display "" at last
+        let pattern3=/\a?/g; // ? - separate print no join a
+        let pattern4=/\a+/g; // + - no space allocation
+
+        let result1 = text.match(pattern);
+        let result2 = text.match(pattern2);
+        let result3 = text.match(pattern3);
+        let result4 = text.match(pattern4);
+
+       
+        console.log(result1);
+        console.log(result2);
+        console.log(result3);
+        console.log(result4);    
+
+
+        let sentence="hi hello \n hi, i am fine";
+        let pattern5=/^\hi+/ig;  // i - case sensetive 
+        let pattern6=/^\hi+/igm;  // m - multi line check
+
+
+        let result5=sentence.match(pattern5);
+        let result6=sentence.match(pattern6);
+        console.log(result5);
+        console.log(result6);
+
+        // meta char. have special meaning in regex
+
+        let digitchar="Js001java";
+        let pattern7=/\d+\w+/g;
+        // /\w+\d+\w+/ - digit before and after string also print
+        // \d+ - print only digit
+        // \d+\w+ - after digit only one char print
+        let result7=digitchar.match(pattern7);
+        console.log(result7);
+
+        // parentheses() used to group patter ns and capture submatches.
+
+        let username="javascript programming";
+        let pattern8=/(\w+)/g;
+        let result8=username.match(pattern8);
+        console.log(result8);
+        console.log(result8[0]);
+        console.log(result8[1]);
+
+
+
+        // common Regex methods 
+        //1. test() - return true or false
+        //2. exec() - return matched result with group
+        //3. match() - return array of matches
+        //4. replace() - replace matches
+        //5. split() - splits string using regex
+
+        let lines="apple banana apple graph";
+        let pattern9=/apple/;
+        console.log(pattern9.test(lines)); // true because apple exit in string
+
+        // replace a string
+
+        let str="apple banana apple graph";
+        let reg=/apple/ig;
+        let result10=str.replace(reg,"mango");
+        console.log(result10)
+
+
+
+
+    </script>
+</body>
+</html>
