@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+     // set is a collection of unique values. It automatically remove duplication
+    // Syntax: let myset=new set([iterable]);
+
+    let email=new Set([]);
+    email.add("javascript@kgcas.com");
+    email.add("javascript@kgcas.com"); // only one display.incase one J caps it considered as a different value so display o/p
+    email.add("python@kgcas.com");
+    email.add("java@kgcas.com");
+    console.log(email);
+   // email.clear();
+   // console.log(email);  // all values are delete 
+
+    // for of
+    // of is a keyword
+
+    for(let mailid of email){    // email is assgined to mailid
+        console.log(mailid);
+    }
+    email.forEach(x=>{
+        console.log(email)
+    })
+
+    let adminpermission=new Set(["read","write","delete"]);
+    let userpermission=new Set(["read"]);
+
+    function haspermission(Role,Permission){  // Role is for user  and Permission is for admin
+
+     return Role.has(permission)
+
+    }  
+    console.log(haspermission(adminpermission,"delete"));
+    console.log(haspermission(userpermission,"delete"));
+
+    let setA=new Set([1,2,3,4,5,1]);
+    let setB=new Set([6,7,8,9,2,10]);
+
+     let union=new Set([...setA,...setB])
+     console.log(union);
+
+    let intersection=new Set([...setA].filter(x=>setB.has(x))); // filter is used to filter the usr value from set of values
+
+    console.log(intersection);
+
+    let difference=new Set([...setA].filter(x=>!setB.has(x)));
+    console.log(difference);
+
+
+    // map is iterateable
+    // week map is not iteratable
+
+    let user1={name:"javascript"};  // javascript is a key
+    let user2={name:"python"}; // value is a key
+    let map=new Map();
+    map.set(user1,"welcome"); // welcome is a value of javascript
+    map.set(user2,"hai python"); // hai python is a value of python
+
+    for(let message of map.values()){
+        console.log(message);
+    }
+
+</script>
+   
+    
+</body>
+</html>
