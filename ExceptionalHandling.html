@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+            
+            try{
+
+                // code that may throw error
+
+                let atmpin=2345;
+                if(atmpin != 1235){
+                    throw  "incorrect pin"
+                }
+                console.log("logged in")
+            }
+
+            catch (error){
+
+                // code to handle the error
+
+                console.log(error)
+            }
+
+            finally{
+                  // code that will always execute
+                  console.log("Excuted sucessfully")
+            }
+
+            //stringfy - convert string into object
+            //parse- convert obj into string
+
+            let str='{"name":"js"}';
+            console.log(str);
+            let strsted=JSON.parse(str);
+            console.log(strsted);
+
+            let obj={id:"1"};
+            let streobj=JSON.stringify(obj);
+            console.log(streobj);
+
+            let sample=new Promise((resolve,reject)=>{   // resolve-true   and reject-false
+                let workisdone=true;
+                if(workisdone){
+                    console.log(("Completed"))
+                }
+                else{
+                    console.log(reject("notyet"))
+                }
+            })
+
+            fetch("data.json")
+            .then(res=>res.json())
+            .then(data =>{
+                for(let details of data.student){
+                    console.log(detail[0].student)
+                }
+            })
+
+
+
+    </script>
+</body>
+</html>
