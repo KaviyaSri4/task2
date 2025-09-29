@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Promise - in js it is an object that represents the eventual completion
+        //   (or failure) of an asynchronous operation and its resulting
+
+        // 3 states: 1. Pending - Initial state, Operation not completed yet.
+                //   2. Fulfilled(Resolved) - Operation completed successfully
+                //   3. Rejected - operation failled
+
+                     // new is used for create a Promise
+                 
+              /* let tossCoin=new Promise((resolve,reject)=>{
+                    let rand=Math.floor(Math.random()*2)
+                    if(rand==0){
+                        resolve(rand)
+                    }
+                    else{
+                        reject()
+                    }
+                    
+                    
+
+                }) 
+                .then((rand)=>console.log(`you win ${rand}`))     // ${} - formatted string
+                .catch((rand)=>console.log(`you lose ${rand}`))
+
+                async function textMessage(){
+                        return "Message sended"
+                    }
+                    console.log(textMessage())*/
+
+                   function placeorder(){
+                        return new Promise((resolve,reject)=>{
+                            console.log("Tyring to place order....")
+                            setTimeout(() => {
+                                resolve("order placed...")
+                                
+                            },2000);
+                        })
+
+                        
+                    }
+                    async function trackDelivery(){
+
+                        let steps=[
+                            "preparing your order...",
+                            "Pickedup by delivery partner",
+                            "on the way to delivery your order",
+                            "order Deliveryed"
+                        ]
+                        for(let step of steps){
+                            await new Promise((res)=>setTimeout(res,2000));
+                            console.log(step);
+
+                        }
+
+                            
+                        }
+                    
+
+                        async function orderStatus(){
+                            let status=await placeorder();
+                            console.log(status);
+                            trackDelivery()
+                            
+                        }
+                        orderStatus();
+                        
+                     
+    </script>
+</body>
+</html>
