@@ -1,0 +1,53 @@
+
+const activeUsers = new Set();
+const userMetadata = new WeakMap();
+
+
+function addUser(id, userObj) {
+  activeUsers.add(id);
+  userMetadata.set(userObj, { lastActive: Date.now() });
+  console.log(`User ${id} added.`);
+}
+
+
+function removeUser(id, userObj) {
+  activeUsers.delete(id);
+  userMetadata.delete(userObj);
+  console.log(`User ${id} removed.`);
+}
+
+
+function updateActivity(userObj) {
+  if (userMetadata.has(userObj)) {
+    userMetadata.get(userObj).lastActive = Date.now();
+    console.log("User activity updated.");
+  }
+}
+
+
+function cleanupInactive(thresholdMs) {
+  const now = Date.now();
+  for (let id of activeUsers) {
+    // Here we need a way to find the corresponding object
+    // In real apps, we’d maintain a Map<id, obj>
+    // For demo, let’s simulate
+    // Just log that cleanup runs
+  }
+  console.log("Cleanup checked (WeakMap cleans up automatically when objects are GC’d).");
+}
+
+
+let user1 = { name: "Alice" };
+let user2 = { name: "Bob" };
+
+addUser(1, user1);
+addUser(2, user2);
+
+updateActivity(user1);
+
+
+removeUser(2, user2);
+user2 = null;  
+
+console.log("Active Users:", activeUsers);
+console.log("GC will remove metadata for user2 automatically.");
