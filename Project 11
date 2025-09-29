@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List with Persistent Storage</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f7f7f7; }
+    h1 { text-align: center; color: #333; }
+    #todo-container { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    #task-input { width: 70%; padding: 8px; margin-right: 10px; }
+    #add-btn { padding: 8px 12px; background: #0077cc; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    #add-btn:hover { background: #005fa3; }
+    ul { list-style: none; padding: 0; }
+    li { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #eee; }
+    li.completed span { text-decoration: line-through; color: gray; }
+    button.delete { background: red; color: white; border: none; padding: 5px 8px; border-radius: 5px; cursor: pointer; }
+    button.delete:hover { background: darkred; }
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <div id="todo-container">
+    <input type="text" id="task-input" placeholder="Enter a new task">
+    <button id="add-btn">Add</button>
+    <ul id="task-list"></ul>
+  </div>
+
+  <script>
+    const taskInput = document.getElementById("task-input");
+    const addBtn = document.getElementById("add-btn");
+    const taskList = document.getElementById("task-list");
+
+    // --- Load tasks from Local Storage ---
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    // --- Restore input from Session Storage (if any) ---
+    taskInput.value = sessionStorage.getItem("currentInput") || "";
+
+    // --- Save input in Session Storage while typing ---
+    taskInput.addEventListener("input", () => {
+      sessionStorage.setItem("currentInput", taskInput.value);
+    });
+
+    // --- Render tasks ---
+    function renderTasks() {
+      taskList.innerHTML = "";
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.className = task.completed ? "completed" : "";
+
+        const span = document.createElement("span");
+        span.textContent = task.text;
+        span.style.cursor = "pointer";
+
+        // Toggle complete on click
+        span.addEventListener("click", () => toggleComplete(index));
+
+        // Delete button
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+        delBtn.className = "delete";
+        delBtn.addEventListener("click", () => deleteTask(index));
+
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        taskList.appendChild(li);
+      });
+    }
+
+    // --- Add task ---
+    function addTask() {
+      const text = taskInput.value.trim();
+      if (text === "") return;
+      tasks.push({ text, completed: false });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      taskInput.value = "";
+      sessionStorage.removeItem("currentInput"); // clear session input
+      renderTasks();
+    }
+
+    // --- Delete task ---
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      renderTasks();
+    }
+
+    // --- Toggle complete ---
+    function toggleComplete(index) {
+      tasks[index].completed = !tasks[index].completed;
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      renderTasks();
+    }
+
+    // --- Event listeners ---
+    addBtn.addEventListener("click", addTask);
+    taskInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") addTask();
+    });
+
+    // --- Initial render ---
+    renderTasks();
+  </script>
+</body>
+</html>
