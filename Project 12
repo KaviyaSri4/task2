@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Input Validator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f7f7f7; }
+    h1 { text-align: center; color: #333; }
+    form { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 10px; }
+    input { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+    button { margin-top: 15px; padding: 10px; width: 100%; background: #0077cc; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #005fa3; }
+    .message { font-size: 0.9em; margin-top: 4px; }
+    .valid { color: green; }
+    .invalid { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Form Validator</h1>
+  <form id="myForm">
+    <label>Name:
+      <input type="text" id="name" placeholder="Enter your name">
+      <div class="message" id="nameMsg"></div>
+    </label>
+
+    <label>Email:
+      <input type="text" id="email" placeholder="Enter your email">
+      <div class="message" id="emailMsg"></div>
+    </label>
+
+    <label>Phone:
+      <input type="text" id="phone" placeholder="123-456-7890">
+      <div class="message" id="phoneMsg"></div>
+    </label>
+
+    <label>Password:
+      <input type="password" id="password" placeholder="At least 8 chars, 1 number, 1 special">
+      <div class="message" id="passMsg"></div>
+    </label>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("myForm");
+
+    // Regex patterns
+    const nameRegex = /^[A-Za-z\s]{3,}$/; // only letters & spaces, at least 3 chars
+    const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,}$/; // simple email validation
+    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/; // 123-456-7890
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/; // min 8 chars, 1 number, 1 special
+
+    // Input fields
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const phoneField = document.getElementById("phone");
+    const passField = document.getElementById("password");
+
+    // Messages
+    const nameMsg = document.getElementById("nameMsg");
+    const emailMsg = document.getElementById("emailMsg");
+    const phoneMsg = document.getElementById("phoneMsg");
+    const passMsg = document.getElementById("passMsg");
+
+    // --- Auto-format phone number ---
+    phoneField.addEventListener("input", () => {
+      // remove non-digits
+      let cleaned = phoneField.value.replace(/\D/g, "");
+      // format as 123-456-7890
+      if (cleaned.length > 3 && cleaned.length <= 6) {
+        cleaned = cleaned.replace(/(\d{3})(\d+)/, "$1-$2");
+      } else if (cleaned.length > 6) {
+        cleaned = cleaned.replace(/(\d{3})(\d{3})(\d{0,4})/, "$1-$2-$3");
+      }
+      phoneField.value = cleaned;
+    });
+
+    // --- Validate on submit ---
+    form.addEventListener("submit", (e) => {
+      e.preventDefault(); // stop refresh
+      let valid = true;
+
+      if (nameRegex.test(nameField.value)) {
+        nameMsg.textContent = " Valid name";
+        nameMsg.className = "message valid";
+      } else {
+        nameMsg.textContent = " Name must be at least 3 letters";
+        nameMsg.className = "message invalid";
+        valid = false;
+      }
+
+      if (emailRegex.test(emailField.value)) {
+        emailMsg.textContent = " Valid email";
+        emailMsg.className = "message valid";
+      } else {
+        emailMsg.textContent = " Invalid email format";
+        emailMsg.className = "message invalid";
+        valid = false;
+      }
+
+      if (phoneRegex.test(phoneField.value)) {
+        phoneMsg.textContent = "Valid phone number";
+        phoneMsg.className = "message valid";
+      } else {
+        phoneMsg.textContent = "Phone must be in 123-456-7890 format";
+        phoneMsg.className = "message invalid";
+        valid = false;
+      }
+
+      if (passwordRegex.test(passField.value)) {
+        passMsg.textContent = "Strong password";
+        passMsg.className = "message valid";
+      } else {
+        passMsg.textContent = " Must be 8+ chars, 1 number & 1 special char";
+        passMsg.className = "message invalid";
+        valid = false;
+      }
+
+      if (valid) {
+        alert("Form submitted successfully ");
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
