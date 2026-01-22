@@ -1,0 +1,63 @@
+import React, { useState } from 'react'
+ function App(){
+
+  const [color,setColor]=useState("white")
+
+  return(
+    <div>
+      <h2>Color Picker</h2>
+      <button className='bt1' onClick={ () => setColor('red') }>Red</button>
+      <button className='bt2' onClick={ () => setColor('blue')}>Blue</button>
+      <button className='bt3' onClick={ () => setColor('green')}>Green</button>
+      <div className='color-box' style={{background : color}}></div>
+    </div>
+
+  )
+ }
+
+ export default App;
+
+
+
+// style in index.jss
+
+
+#root{
+  text-align: center;
+}
+.bt1{
+  background-color: red;
+  padding: 10px;
+  border: none;
+  width: 60px;
+  border-radius: 20px;
+}
+
+.bt2{
+  background-color: blue;
+  padding: 10px;
+  border: none;
+  width: 60px;
+  border-radius: 20px;
+}
+
+.bt3{
+
+  background-color: green;
+  padding: 10px;
+  border: none;
+  width: 60px;
+  border-radius: 20px;
+
+}
+
+
+
+.color-box{
+  height: 100px;
+  width: 100px;
+  border: 1px solid;
+  margin-top: 20px;
+  margin-left: 740px;
+
+}
