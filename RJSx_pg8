@@ -1,0 +1,87 @@
+import React,{ useState } from 'react'
+
+function App() {
+  const [activeTab,setActiveTab] = useState("home")
+
+  return (
+    <div style={styles.container}>
+
+      <h2>Tab Navigation Example</h2>
+
+      {/* Tab Buttons */}
+
+      <div styles={styles.tabContainer}>
+
+        <button style={activeTab === "home" ? styles.activeBtn : styles.btn} 
+          onClick={() => setActiveTab ("home")}> HOME </button>
+
+         <button style={activeTab === "about" ? styles.activeBtn : styles.btn} 
+          onClick={() => setActiveTab ("about")}> About </button>
+
+          <button style={activeTab === "contact" ? styles.activeBtn : styles.btn} 
+          onClick={() => setActiveTab ("contact")}> Contact </button>
+
+          </div>
+
+          {/* Conditionsl contact */}
+
+          <div style={styles.contentBox}>
+            {activeTab === "home" && (
+
+              <p>Welcome to the home tab! This is the home page</p>
+
+            )}
+
+            {activeTab === "about" && (
+
+                <p>Welcome to the about tab! We providing the best services</p>
+
+             )}
+
+
+               {activeTab === "contact" && (
+
+                  <p>Welcome to the contact page, how can we help you For the contact use this 345671</p>
+
+               )}
+
+          </div>
+
+    </div>
+    
+  )
+}
+
+const styles = {
+
+  container: {
+    textAlign:"center",
+    padding: "20px",
+    fontfamily:"Arial"
+
+  },
+
+  tabContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: "20px",
+  },
+
+ btn:{
+  
+  padding:"10px 20px",
+  margin:"5px",
+  cursor: "pointer",
+  border: "1px solid ",
+  background: "#f5f5f5",
+
+
+ }
+  
+
+
+}
+  
+
+
+export default App;
