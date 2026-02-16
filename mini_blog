@@ -1,0 +1,74 @@
+//main.jsx
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+
+import {BrowserRouter,Routes,Route} from "react-router-dom"
+import Home from './Home.jsx'
+import Post from './Post.jsx'
+
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    
+
+    <BrowserRouter>
+
+            <Routes>
+
+                  <Route path ="/" element = {<Home />}> </Route>
+                  <Route path ="/post" element = {<Post />}> </Route>
+
+
+            </Routes>
+
+    </BrowserRouter>
+
+  </StrictMode>,
+)
+
+
+
+//Home.jsx
+
+import React from "react";
+
+import {Link} from "react-router-dom"
+
+function Home(){
+
+    return(
+
+        <div>
+            Hi <Link to="/Post"> Click this content
+            it's go to the post.jsx page
+            </Link>
+        </div>
+        
+    )
+}
+
+export default Home;
+
+
+//Post.jsx
+
+import React from "react";
+
+function Post(){
+
+    return(
+
+        <div>
+
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur similique pariatur distinctio. Quidem,
+             esse necessitatibus dolor, nihil quis explicabo nemo dolores,
+              tempora amet similique quia dicta fugit nobis corporis inventore.</p>
+
+
+        </div>
+        
+    )
+}
+export default Post;
