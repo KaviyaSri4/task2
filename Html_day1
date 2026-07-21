@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>task</title>
+  </head>
+  <body>
+    <h2>Good Day</h2>
+    <p>
+      <b><i>Lorem</b></i> ipsum dolor sit amet consectetur,<u>adipisicing</u> elit. Sapiente
+      facere, nobis laborum tempore laboriosam unde aliquid quo ex velit magnam
+      voluptate quas dolores similique dolore ea accusamus possimus quis nisi.
+    </p>
+  </body>
+</html>
