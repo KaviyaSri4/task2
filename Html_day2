@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>task</title>
+  </head>
+  <body>
+    <table border="4">
+      <caption>
+        TimeTableCT-B
+      </caption>
+      <thead>
+        <tr>
+          <th>Days</th>
+          <th>9.00to10.00</th>
+          <th>10.00to11.00</th>
+          <th>11.00to11.10</th>
+          <th>11.10to12.10</th>
+          <th>12.10to1.00</th>
+          <th>1.00to1.50</th>
+          <th>1.50to2.40</th>
+          <th>2.40to3.40</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monday</td>
+          <td>java</td>
+          <td>eng</td>
+          <td>B</td>
+          <td>tamil</td>
+          <td>maths</td>
+          <td>L</td>
+          <td>HR</td>
+          <td>os</td>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td>os</td>
+          <td>java</td>
+          <td>R</td>
+          <td colspan="2">J.lab</td>
+          <!-- <td>j.lab</td> -->
+          <td>U</td>
+          <td>java</td>
+          <td>tamil</td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td>java</td>
+          <td>tamil</td>
+          <td>E</td>
+          <td colspan="2">Innovationlab</td>
+          <!-- <td>Innovationlab</td> -->
+          <td>N</td>
+          <td>os</td>
+          <td>eng</td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td>os</td>
+          <td>java</td>
+          <td>A</td>
+          <td colspan="2">j.lab</td>
+          <!-- <td>j.lab</td> -->
+          <td>C</td>
+          <td>eng</td>
+          <td>tamil</td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td>eng</td>
+          <td>tamil</td>
+          <td>K</td>
+          <td>HR</td>
+          <td>java</td>
+          <td>H</td>
+          <td>maths</td>
+          <td>os</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
