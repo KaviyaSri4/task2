@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="Style.css">
+    <style>
+          h2{
+             color: azure;
+             background-color: blueviolet;
+          }
+        
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<>, initial-scale=1.0"> <
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="color: aquamarine;">Good day</h1>
+    <h1 style="background-color: bisque;">Welcome</h1>
+    <h1>Hi</h1>
+    <h2>Wellcome</h2>
+    <h1>How are you</h1>
+    <h2>Be happy</h2>
+    <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+        Debitis delectus id enim voluptatibus
+         magni sed! Possimus quae magnam suscipit,
+         magni ullam rem inventore delectus porro
+          blanditiis assumenda. Beatae, 
+        magni delectus?</h4>
+</body>
+</html>
